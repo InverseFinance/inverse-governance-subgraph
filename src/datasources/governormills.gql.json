@@ -1,6 +1,5 @@
 [{
   "name": "Governor",
-  "immutable": true,
   "fields": [
     { "name": "id",                "type": "Bytes!"                                             },
     { "name": "asAccount" ,        "type": "Account!"                                           },
