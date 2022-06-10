@@ -1,0 +1,46 @@
+[{
+  "name": "Governor",
+  "immutable": true,
+  "fields": [
+    { "name": "id",                "type": "Bytes!"                                             },
+    { "name": "asAccount" ,        "type": "Account!"                                           },
+    { "name": "name" ,             "type": "String!"                                            },
+    { "name": "timelock" ,         "type": "Account!"                                           },
+    { "name": "votingDelay" ,      "type": "BigInt!"                                            },
+    { "name": "votingPeriod" ,     "type": "BigInt!"                                            },
+    { "name": "proposalThreshold", "type": "BigInt!"                                            },
+    { "name": "quorum",            "type": "BigInt!"                                            },
+    { "name": "proposals",         "type": "Proposal!",                   "derived": "governor" },
+    { "name": "proposalCreated",   "type": "ProposalCreated!",            "derived": "governor" },
+    { "name": "proposalQueued",    "type": "ProposalQueued!",             "derived": "governor" },
+    { "name": "proposalExecuted",  "type": "ProposalExecuted!",           "derived": "governor" },
+    { "name": "proposalCanceled",  "type": "ProposalCanceled!",           "derived": "governor" },
+    { "name": "votecast",          "type": "VoteCast!",                   "derived": "governor" },
+    { "name": "thresholdUpdated",  "type": "ProposalThresholdUpdated!",   "derived": "governor" },
+    { "name": "quorumUpdated",     "type": "QuorumUpdated!",              "derived": "governor" }
+  ]
+},{
+  "name": "ProposalThresholdUpdated",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                 "type": "Account!"        },
+    { "name": "transaction",             "type": "Transaction!"    },
+    { "name": "timestamp",               "type": "BigInt!"         },
+    { "name": "governor",                "type": "Governor!"       },
+    { "name": "oldThreshold",            "type": "BigInt!"         },
+    { "name": "newThreshold",            "type": "BigInt!"         }
+  ]
+},{
+  "name": "QuorumUpdated",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                 "type": "Account!"        },
+    { "name": "transaction",             "type": "Transaction!"    },
+    { "name": "timestamp",               "type": "BigInt!"         },
+    { "name": "governor",                "type": "Governor!"       },
+    { "name": "oldQuorum",               "type": "BigInt!"         },
+    { "name": "newQuorum",               "type": "BigInt!"         }
+  ]
+}]

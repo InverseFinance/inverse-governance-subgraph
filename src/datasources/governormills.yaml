@@ -1,0 +1,24 @@
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: GovernorMills
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: GovernorMills
+          file: {root}/abi/GovernorMills.json
+      eventHandlers:
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: ProposalThresholdUpdated(uint256,uint256)
+          handler: handleProposalThresholdUpdated
+        - event: QuorumUpdated(uint256,uint256)
+          handler: handleQuorumUpdated
+      file: {file}
