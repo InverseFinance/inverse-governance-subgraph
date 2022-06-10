@@ -18,6 +18,13 @@
       "voting"
     ]
   },{
+    "name": "Inverse Treasury",
+    "address": "0x926dF14a23BE491164dCF93f4c468A50ef659D5B",
+    "startBlock": 11549293 ,
+    "module": [
+      "comptimelock"
+    ]
+  },{
     "name": "Inverse Governor Alpha",
     "address": "0x35d9f4953748b318f18c30634bA299b237eeDfff",
     "startBlock": 11549293,
@@ -26,7 +33,7 @@
       "governor"
     ]
   },{
-    "name": "nverse Governor Mills",
+    "name": "Inverse Governor Mills",
     "address": "0xBeCCB6bb0aa4ab551966A7E4B97cec74bb359Bf6",
     "startBlock": 13549618,
     "module": [

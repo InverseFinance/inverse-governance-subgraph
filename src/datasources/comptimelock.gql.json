@@ -1,0 +1,86 @@
+[{
+  "name": "Account",
+  "fields": [
+    { "name": "id",                   "type": "Bytes!"                                              },
+    { "name": "asTimelock",           "type": "Timelock"                                            },
+    { "name": "timelockedCalls",      "type": "TimelockTransaction!",        "derived": "target"    }
+  ]
+},{
+  "name": "Timelock",
+  "immutable": true,
+  "fields": [
+    { "name": "id",                   "type": "Bytes!"                                               },
+    { "name": "asAccount" ,           "type": "Account!"                                             },
+    { "name": "delay" ,               "type": "BigInt!"                                              },
+    { "name": "operations",           "type": "TimelockTransaction!",         "derived": "contract"  },
+    { "name": "queued",               "type": "TimelockTransactionQueued!",   "derived": "contract"  },
+    { "name": "executed",             "type": "TimelockTransactionExecuted!", "derived": "contract"  },
+    { "name": "cancelled",            "type": "TimelockTransactionCanceled!", "derived": "contract"  },
+    { "name": "delaychange",          "type": "TimelockNewDelay!",            "derived": "contract"  }
+  ]
+},{
+  "name": "TimelockTransactionStatus",
+  "enums": [
+    "QUEUED",
+    "EXECUTED",
+    "CANCELED"
+  ]
+},{
+  "name": "TimelockTransaction",
+  "fields": [
+    { "name": "contract",             "type": "Timelock!"                                            },
+    { "name": "status",               "type": "TimelockTransactionStatus!"                           },
+    { "name": "target",               "type": "Account!"                                             },
+    { "name": "value",                "type": "BigDecimal!"                                          },
+    { "name": "signature",            "type": "String!"                                              },
+    { "name": "data",                 "type": "Bytes!"                                               },
+    { "name": "eta",                  "type": "BigInt!"                                              },
+    { "name": "queued",               "type": "TimelockTransactionQueued!",   "derived": "operation" },
+    { "name": "executed",             "type": "TimelockTransactionExecuted!", "derived": "operation" },
+    { "name": "cancelled",            "type": "TimelockTransactionCanceled!", "derived": "operation" }
+  ]
+},{
+  "name": "TimelockTransactionQueued",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",              "type": "Account!"             },
+    { "name": "transaction",          "type": "Transaction!"         },
+    { "name": "timestamp",            "type": "BigInt!"              },
+    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "operation",            "type": "TimelockTransaction!" }
+  ]
+},{
+  "name": "TimelockTransactionExecuted",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",              "type": "Account!"             },
+    { "name": "transaction",          "type": "Transaction!"         },
+    { "name": "timestamp",            "type": "BigInt!"              },
+    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "operation",            "type": "TimelockTransaction!" }
+  ]
+},{
+  "name": "TimelockTransactionCanceled",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",              "type": "Account!"             },
+    { "name": "transaction",          "type": "Transaction!"         },
+    { "name": "timestamp",            "type": "BigInt!"              },
+    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "operation",            "type": "TimelockTransaction!" }
+  ]
+},{
+  "name": "TimelockNewDelay",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",              "type": "Account!"           },
+    { "name": "transaction",          "type": "Transaction!"       },
+    { "name": "timestamp",            "type": "BigInt!"            },
+    { "name": "contract",             "type": "Timelock!"          },
+    { "name": "delay",                "type": "BigInt!"            }
+  ]
+}]

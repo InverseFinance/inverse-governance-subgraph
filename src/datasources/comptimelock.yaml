@@ -1,0 +1,26 @@
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: CompTimelock
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Timelock
+      abis:
+        - name: CompTimelock
+          file: {root}/abi/CompTimelock.json
+      eventHandlers:
+        - event: QueueTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: hanldeQueueTransaction
+        - event: ExecuteTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: hanldeExecuteTransaction
+        - event: CancelTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: hanldeCancelTransaction
+        - event: NewDelay(indexed uint256)
+          handler: hanldeNewDelay
+      file: {file}
