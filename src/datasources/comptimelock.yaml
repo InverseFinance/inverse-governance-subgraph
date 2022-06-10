@@ -16,11 +16,11 @@
           file: {root}/abi/CompTimelock.json
       eventHandlers:
         - event: QueueTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
-          handler: hanldeQueueTransaction
+          handler: handleQueueTransaction
         - event: ExecuteTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
-          handler: hanldeExecuteTransaction
+          handler: handleExecuteTransaction
         - event: CancelTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
-          handler: hanldeCancelTransaction
+          handler: handleCancelTransaction
         - event: NewDelay(indexed uint256)
-          handler: hanldeNewDelay
+          handler: handleNewDelay
       file: {file}
