@@ -1,0 +1,45 @@
+[{
+  "name": "Account",
+  "fields": [
+    { "name": "id",                      "type": "Bytes!"                                 },
+    { "name": "mints",                   "type": "Mint!",           "derived": "minter"   },
+    { "name": "redeems",                 "type": "Redeem!",         "derived": "redeemer" }
+  ]
+},{
+  "name": "ERC20Contract",
+  "fields": [
+    { "name": "id",                      "type": "Bytes!"                                 },
+    { "name": "mints",                   "type": "Mint!",           "derived": "contract" },
+    { "name": "redeems",                 "type": "Redeem!",         "derived": "contract" }
+  ]
+},{
+  "name": "Mint",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                 "type": "Account!"        },
+    { "name": "transaction",             "type": "Transaction!"    },
+    { "name": "timestamp",               "type": "BigInt!"         },
+    { "name": "contract",                "type": "ERC20Contract!"  },
+    { "name": "minter",                  "type": "Account!"        },
+    { "name": "mintAmountExact",         "type": "BigInt!"         },
+    { "name": "mintAmount",              "type": "BigDecimal!"     },
+    { "name": "mintTokensExact",         "type": "BigInt!"         },
+    { "name": "mintTokens",              "type": "BigDecimal!"     }
+  ]
+},{
+  "name": "Redeem",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                 "type": "Account!"        },
+    { "name": "transaction",             "type": "Transaction!"    },
+    { "name": "timestamp",               "type": "BigInt!"         },
+    { "name": "contract",                "type": "ERC20Contract!"  },
+    { "name": "redeemer",                "type": "Account!"        },
+    { "name": "redeemAmountExact",       "type": "BigInt!"         },
+    { "name": "redeemAmount",            "type": "BigDecimal!"     },
+    { "name": "redeemTokensExact",       "type": "BigInt!"         },
+    { "name": "redeemTokens",            "type": "BigDecimal!"     }
+  ]
+}]
