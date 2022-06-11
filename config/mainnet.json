@@ -47,5 +47,8 @@
       "governormills",
       "governor"
     ]
-  }]
+  }],
+  "deploy": [
+    { "type": "hosted-service", "name": "amxx/inverse-protocol" }
+  ]
 }

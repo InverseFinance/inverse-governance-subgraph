@@ -11,7 +11,7 @@
     "build": "npm run build:codegen && npm run build:compile",
     "build:codegen": "graph codegen ${SUBGRAPH:-generated/mainnet.subgraph.yaml}",
     "build:compile": "graph build ${SUBGRAPH:-generated/mainnet.subgraph.yaml}",
-    "deploy:hosted": "config/deploy.sh"
+    "deploy": "script/deploy.sh"
   },
   "devDependencies": {
     "@amxx/graphprotocol-utils": "^1.1.0",
