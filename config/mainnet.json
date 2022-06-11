@@ -18,6 +18,13 @@
       "voting"
     ]
   },{
+    "name": "DOLA",
+    "address": "0x865377367054516e17014CcdED1e7d814EDC9ce4",
+    "startBlock": 11915875 ,
+    "module": [
+      "erc20"
+    ]
+  },{
     "name": "Inverse Treasury",
     "address": "0x926dF14a23BE491164dCF93f4c468A50ef659D5B",
     "startBlock": 11549293 ,

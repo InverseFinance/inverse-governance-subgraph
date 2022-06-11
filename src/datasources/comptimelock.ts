@@ -47,52 +47,79 @@ export function fetchTimelock(address: Address): Timelock {
 }
 
 export function handleQueueTransaction(event: QueueTransactionEvent): void {
-	let timelock        = fetchTimelock(event.address)
-	let operation       = new TimelockTransaction(event.address.toHex().concat('/').concat(event.params.txHash.toHex()))
-	operation.contract  = timelock.id
-	operation.status    = "QUEUED"
-	operation.target    = fetchAccount(event.params.target).id
-	operation.value     = decimals.toDecimals(event.params.value)
-	operation.signature = event.params.signature
-	operation.data      = event.params.data
-	operation.eta       = event.params.eta
+	let timelock    = fetchTimelock(event.address)
+	let operationId = timelock.id.toHex().concat('/').concat(event.params.txHash.toHex())
+	let operation   = TimelockTransaction.load(operationId)
+
+	if (operation == null) {
+		operation           = new TimelockTransaction(operationId)
+		operation.timelock  = timelock.id
+		operation.target    = fetchAccount(event.params.target).id
+		operation.value     = decimals.toDecimals(event.params.value)
+		operation.signature = event.params.signature
+		operation.data      = event.params.data
+		operation.eta       = event.params.eta
+	}
+	operation.status = "QUEUED"
 	operation.save()
 
 	let ev         = new TimelockTransactionQueued(events.id(event))
 	ev.emitter     = timelock.id
 	ev.transaction = transactions.log(event).id
 	ev.timestamp   = event.block.timestamp
-	ev.contract    = timelock.id
+	ev.timelock    = timelock.id
 	ev.operation   = operation.id
 	ev.save()
 }
 
 export function handleExecuteTransaction(event: ExecuteTransactionEvent): void {
-	let timelock        = fetchTimelock(event.address)
-	let operation       = new TimelockTransaction(event.address.toHex().concat('/').concat(event.params.txHash.toHex()))
-	operation.status    = "EXECUTED"
+	let timelock    = fetchTimelock(event.address)
+	let operationId = timelock.id.toHex().concat('/').concat(event.params.txHash.toHex())
+	let operation   = TimelockTransaction.load(operationId)
+
+	if (operation == null) {
+		operation           = new TimelockTransaction(operationId)
+		operation.timelock  = timelock.id
+		operation.target    = fetchAccount(event.params.target).id
+		operation.value     = decimals.toDecimals(event.params.value)
+		operation.signature = event.params.signature
+		operation.data      = event.params.data
+		operation.eta       = event.params.eta
+	}
+	operation.status = "EXECUTED"
 	operation.save()
 
 	let ev         = new TimelockTransactionExecuted(events.id(event))
 	ev.emitter     = timelock.id
 	ev.transaction = transactions.log(event).id
 	ev.timestamp   = event.block.timestamp
-	ev.contract    = timelock.id
+	ev.timelock    = timelock.id
 	ev.operation   = operation.id
 	ev.save()
 }
 
 export function handleCancelTransaction(event: CancelTransactionEvent): void {
-	let timelock        = fetchTimelock(event.address)
-	let operation       = new TimelockTransaction(event.address.toHex().concat('/').concat(event.params.txHash.toHex()))
-	operation.status    = "CANCELED"
+	let timelock    = fetchTimelock(event.address)
+	let operationId = timelock.id.toHex().concat('/').concat(event.params.txHash.toHex())
+	let operation   = TimelockTransaction.load(operationId)
+
+	if (operation == null) {
+		operation           = new TimelockTransaction(operationId)
+		operation.timelock  = timelock.id
+		operation.target    = fetchAccount(event.params.target).id
+		operation.value     = decimals.toDecimals(event.params.value)
+		operation.signature = event.params.signature
+		operation.data      = event.params.data
+		operation.eta       = event.params.eta
+	}
+	operation.status = "CANCELED"
 	operation.save()
 
 	let ev         = new TimelockTransactionCanceled(events.id(event))
 	ev.emitter     = timelock.id
 	ev.transaction = transactions.log(event).id
 	ev.timestamp   = event.block.timestamp
-	ev.contract    = timelock.id
+	ev.timelock    = timelock.id
 	ev.operation   = operation.id
 	ev.save()
 }
@@ -106,7 +133,7 @@ export function handleNewDelay(event: NewDelayEvent): void {
 	ev.emitter     = timelock.id
 	ev.transaction = transactions.log(event).id
 	ev.timestamp   = event.block.timestamp
-	ev.contract    = timelock.id
+	ev.timelock    = timelock.id
 	ev.delay       = event.params.newDelay
 	ev.save()
 }

@@ -11,11 +11,11 @@
     { "name": "id",                   "type": "Bytes!"                                               },
     { "name": "asAccount" ,           "type": "Account!"                                             },
     { "name": "delay" ,               "type": "BigInt!"                                              },
-    { "name": "operations",           "type": "TimelockTransaction!",         "derived": "contract"  },
-    { "name": "queued",               "type": "TimelockTransactionQueued!",   "derived": "contract"  },
-    { "name": "executed",             "type": "TimelockTransactionExecuted!", "derived": "contract"  },
-    { "name": "cancelled",            "type": "TimelockTransactionCanceled!", "derived": "contract"  },
-    { "name": "delaychange",          "type": "TimelockNewDelay!",            "derived": "contract"  }
+    { "name": "operations",           "type": "TimelockTransaction!",         "derived": "timelock"  },
+    { "name": "queued",               "type": "TimelockTransactionQueued!",   "derived": "timelock"  },
+    { "name": "executed",             "type": "TimelockTransactionExecuted!", "derived": "timelock"  },
+    { "name": "cancelled",            "type": "TimelockTransactionCanceled!", "derived": "timelock"  },
+    { "name": "delaychange",          "type": "TimelockNewDelay!",            "derived": "timelock"  }
   ]
 },{
   "name": "TimelockTransactionStatus",
@@ -27,7 +27,7 @@
 },{
   "name": "TimelockTransaction",
   "fields": [
-    { "name": "contract",             "type": "Timelock!"                                            },
+    { "name": "timelock",             "type": "Timelock!"                                            },
     { "name": "status",               "type": "TimelockTransactionStatus!"                           },
     { "name": "target",               "type": "Account!"                                             },
     { "name": "value",                "type": "BigDecimal!"                                          },
@@ -46,7 +46,7 @@
     { "name": "emitter",              "type": "Account!"             },
     { "name": "transaction",          "type": "Transaction!"         },
     { "name": "timestamp",            "type": "BigInt!"              },
-    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "timelock",             "type": "Timelock!"            },
     { "name": "operation",            "type": "TimelockTransaction!" }
   ]
 },{
@@ -57,7 +57,7 @@
     { "name": "emitter",              "type": "Account!"             },
     { "name": "transaction",          "type": "Transaction!"         },
     { "name": "timestamp",            "type": "BigInt!"              },
-    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "timelock",             "type": "Timelock!"            },
     { "name": "operation",            "type": "TimelockTransaction!" }
   ]
 },{
@@ -68,7 +68,7 @@
     { "name": "emitter",              "type": "Account!"             },
     { "name": "transaction",          "type": "Transaction!"         },
     { "name": "timestamp",            "type": "BigInt!"              },
-    { "name": "contract",             "type": "Timelock!"            },
+    { "name": "timelock",             "type": "Timelock!"            },
     { "name": "operation",            "type": "TimelockTransaction!" }
   ]
 },{
@@ -79,7 +79,7 @@
     { "name": "emitter",              "type": "Account!"           },
     { "name": "transaction",          "type": "Transaction!"       },
     { "name": "timestamp",            "type": "BigInt!"            },
-    { "name": "contract",             "type": "Timelock!"          },
+    { "name": "timelock",             "type": "Timelock!"          },
     { "name": "delay",                "type": "BigInt!"            }
   ]
 }]
