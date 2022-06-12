@@ -27,21 +27,21 @@
   },{
     "name": "DOLA3CRV",
     "address": "0xaa5a67c256e27a5d80712c51971408db3370927d",
-    "startBlock": 13203276,
+    "startBlock": 13097116,
     "module": [
       "erc20"
     ]
   },{
     "name": "INVWETH-SLP",
     "address": "0x328dfd0139e26cb0fef7b0742b49b0fe4325f821",
-    "startBlock": 12120211,
+    "startBlock": 11976550,
     "module": [
       "erc20"
     ]
   },{
     "name": "INVDOLA-SLP",
     "address": "0x5ba61c0a8c4dcccc200cd0ccc40a5725a426d002",
-    "startBlock": 13228326,
+    "startBlock": 13173519,
     "module": [
       "erc20"
     ]
@@ -49,6 +49,13 @@
     "name": "DOLA",
     "address": "0x865377367054516e17014CcdED1e7d814EDC9ce4",
     "startBlock": 11915875 ,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "yvDOLA",
+    "address": "0xD4108Bb1185A5c30eA3f4264Fd7783473018Ce17",
+    "startBlock": 14588104 ,
     "module": [
       "erc20"
     ]
