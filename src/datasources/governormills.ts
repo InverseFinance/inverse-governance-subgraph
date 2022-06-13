@@ -4,6 +4,7 @@ import {
 
 import {
 	Governor,
+	VoteCast,
 	ProposalThresholdUpdated,
 	QuorumUpdated,
 } from '../../generated/schema'
@@ -11,6 +12,7 @@ import {
 import {
 	GovernorMills,
 	ProposalCreated          as ProposalCreatedEvent,
+	VoteCast                 as VoteCastEvent,
 	ProposalThresholdUpdated as ProposalThresholdUpdatedEvent,
 	QuorumUpdated            as QuorumUpdatedEvent,
 } from '../../generated/governormills/GovernorMills'
@@ -18,6 +20,13 @@ import {
 import {
 	fetchAccount,
 } from '@openzeppelin/subgraphs/src/fetch/account'
+
+import {
+	fetchGovernor,
+	fetchProposal,
+	fetchProposalSupport,
+	fetchVoteReceipt,
+} from '@openzeppelin/subgraphs/src/fetch/governor'
 
 import {
 	events,
@@ -49,6 +58,32 @@ export function fetchGovernorMills(address: Address): Governor {
 
 export function handleProposalCreated(event: ProposalCreatedEvent): void {
 	fetchGovernorMills(event.address)
+}
+
+export function handleVoteCast(event: VoteCastEvent): void {
+	let governor = fetchGovernor(event.address)
+
+	let proposal = fetchProposal(governor, event.params.proposalId)
+
+	let support  = fetchProposalSupport(proposal, event.params.support)
+	support.save()
+
+	let receipt  = fetchVoteReceipt(proposal, event.params.voter)
+	receipt.support = support.id
+	receipt.weight  = event.params.votes
+	receipt.reason  = ""
+	receipt.save()
+
+	let ev         = new VoteCast(events.id(event))
+	ev.emitter     = governor.id
+	ev.transaction = transactions.log(event).id
+	ev.timestamp   = event.block.timestamp
+	ev.governor    = governor.id
+	ev.proposal    = receipt.proposal
+	ev.support     = receipt.support
+	ev.receipt     = receipt.id
+	ev.voter       = receipt.voter
+	ev.save()
 }
 
 export function handleProposalThresholdUpdated(event: ProposalThresholdUpdatedEvent): void {
