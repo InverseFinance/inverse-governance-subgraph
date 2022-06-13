@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "rimraf artifacts build cache generated",
-    "prepare": "mkdir generated artifacts && npm run prepare:subgraph",
+    "prepare": "mkdir -p generated artifacts && npm run prepare:subgraph",
     "prepare:subgraph": "graph-compiler --config config/mainnet.json --include src/datasources --include node_modules/@openzeppelin/subgraphs/src/datasources --export-schema --export-subgraph",
     "build": "npm run build:codegen && npm run build:compile",
     "build:codegen": "graph codegen generated/mainnet.subgraph.yaml",
