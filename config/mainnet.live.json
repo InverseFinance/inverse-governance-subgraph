@@ -1,0 +1,89 @@
+{
+  "output": "./generated/mainnet.",
+  "chain": "mainnet",
+  "datasources": [{
+    "name": "INV",
+    "address": "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68",
+    "startBlock": 11498340,
+    "module": [
+      "erc20",
+      "voting"
+    ]
+  },{
+    "name": "XINV0",
+    "address": "0x65b35d6eb7006e0e607bc54eb2dfd459923476fe",
+    "startBlock": 12437327,
+    "module": [
+      "xinv"
+    ]
+  },{
+    "name": "XINV",
+    "address": "0x1637e4e9941d55703a7a5e7807d6ada3f7dcd61b",
+    "startBlock": 13549472,
+    "module": [
+      "xinv",
+      "voting"
+    ]
+  },{
+    "name": "DOLA3CRV",
+    "address": "0xaa5a67c256e27a5d80712c51971408db3370927d",
+    "startBlock": 13097116,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "INVWETH-SLP",
+    "address": "0x328dfd0139e26cb0fef7b0742b49b0fe4325f821",
+    "startBlock": 11976550,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "INVDOLA-SLP",
+    "address": "0x5ba61c0a8c4dcccc200cd0ccc40a5725a426d002",
+    "startBlock": 13173519,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "DOLA",
+    "address": "0x865377367054516e17014CcdED1e7d814EDC9ce4",
+    "startBlock": 11915875 ,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "yvDOLA",
+    "address": "0xD4108Bb1185A5c30eA3f4264Fd7783473018Ce17",
+    "startBlock": 14588104 ,
+    "module": [
+      "erc20"
+    ]
+  },{
+    "name": "Inverse Treasury",
+    "address": "0x926dF14a23BE491164dCF93f4c468A50ef659D5B",
+    "startBlock": 11549293 ,
+    "module": [
+      "comptimelock"
+    ]
+  },{
+    "name": "Inverse Governor Alpha",
+    "address": "0x35d9f4953748b318f18c30634bA299b237eeDfff",
+    "startBlock": 11549293,
+    "module": [
+      "governormills",
+      "governor"
+    ]
+  },{
+    "name": "Inverse Governor Mills",
+    "address": "0xBeCCB6bb0aa4ab551966A7E4B97cec74bb359Bf6",
+    "startBlock": 13549618,
+    "module": [
+      "governormills",
+      "governor"
+    ]
+  }],
+  "deploy": [
+    { "type": "studio", "name": "inverse-governance-subgraph" }
+  ]
+}

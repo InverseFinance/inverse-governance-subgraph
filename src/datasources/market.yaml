@@ -1,0 +1,35 @@
+
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: Market
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Market
+      abis:
+        - name: Market
+          file: {root}/abi/FiRM/Market.json
+        - name: Escrow # needed for try_token
+          file: {root}/abi/FiRM/Escrow.json
+        - name: IERC20
+          file: {root}/node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: CreateEscrow(indexed address,address)
+          handler: handleCreateEscrow
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,indexed address,uint256)
+          handler: handleWithdraw
+        - event: Borrow(indexed address,uint256)
+          handler: handleBorrow
+        - event: Repay(indexed address,indexed address,uint256)
+          handler: handleRepay
+        - event: Liquidate(indexed address,indexed address,uint256,uint256)
+          handler: handleLiquidate
+      file: {file}

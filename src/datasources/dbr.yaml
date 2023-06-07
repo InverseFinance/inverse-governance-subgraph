@@ -1,0 +1,29 @@
+
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: DBR
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Market
+      abis:
+        - name: DBR
+          file: {root}/abi/FiRM/DBR.json
+      eventHandlers:
+        - event: AddMarket(indexed address)
+          handler: handleAddMarket
+        # - event: AddMinter(indexed address)
+        #   handler: handleAddMinter
+        # - event: RemoveMinter(indexed address)
+        #   handler: handleRemoveMinter
+        # - event: ChangeOperator(indexed address)
+        #   handler: handleChangeOperator
+        # - event: ForceReplenish(indexed address,indexed address,indexed address,uint256,uint256,uint256)
+        #   handler: handleForceReplenish
+      file: {file}
