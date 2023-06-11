@@ -1,0 +1,21 @@
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: BorrowController
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - BorrowController
+      abis:
+        - name: BorrowController
+          file: {root}/abi/FiRM/BorrowController.json
+      callHandlers:
+        - function: setDailyLimit(address,uint256)
+          handler: handleSetDailyLimit
+      file: {file}

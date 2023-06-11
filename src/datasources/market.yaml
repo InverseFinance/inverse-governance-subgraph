@@ -1,4 +1,3 @@
-
   - kind: ethereum/contract
     name: {id}
     network: {chain}
@@ -12,9 +11,12 @@
       language: wasm/assemblyscript
       entities:
         - Market
+        - BorrowController
       abis:
         - name: Market
           file: {root}/abi/FiRM/Market.json
+        - name: BorrowController
+          file: {root}/abi/FiRM/BorrowController.json
         - name: Escrow # needed for try_token
           file: {root}/abi/FiRM/Escrow.json
         - name: IERC20
@@ -32,4 +34,7 @@
           handler: handleRepay
         - event: Liquidate(indexed address,indexed address,uint256,uint256)
           handler: handleLiquidate
+      callHandlers:
+        - function: setBorrowController(address)
+          handler: handleSetBorrowController
       file: {file}

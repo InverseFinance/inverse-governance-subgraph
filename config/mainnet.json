@@ -12,7 +12,8 @@
   },{
     "name": "Market",
     "templates": [
-      "market"
+      "market",
+      "borrowcontroller"
     ]
   }],
   "deploy": [

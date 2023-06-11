@@ -1,4 +1,3 @@
-
   - kind: ethereum/contract
     name: {id}
     network: {chain}
@@ -12,9 +11,14 @@
       language: wasm/assemblyscript
       entities:
         - Market
+        - BorrowController
       abis:
         - name: DBR
           file: {root}/abi/FiRM/DBR.json
+        - name: Market
+          file: {root}/abi/FiRM/Market.json
+        - name: BorrowController
+          file: {root}/abi/FiRM/BorrowController.json
       eventHandlers:
         - event: AddMarket(indexed address)
           handler: handleAddMarket

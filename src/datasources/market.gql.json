@@ -2,6 +2,8 @@
   "name": "Account",
   "fields": [
     { "name": "id",                 "type": "Bytes!"                                             },
+    { "name": "asMarket",           "type": "Market"                                             },
+    { "name": "asController",       "type": "BorrowController"                                   },
     { "name": "escrows",            "type": "Escrow!",            "derived": "beneficiary"       },
     { "name": "deposits",           "type": "Deposit!",           "derived": "account"           },
     { "name": "withdrawals",        "type": "Withdraw!",          "derived": "account"           },
@@ -19,9 +21,19 @@
     { "name": "escrows",            "type": "Escrow!",            "derived": "token"             }
   ]
 },{
+  "name": "BorrowController",
+  "fields": [
+    { "name": "id",                 "type": "Bytes!"                                             },
+    { "name": "asAccount",          "type": "Account!"                                           },
+    { "name": "markets",            "type": "Market!",            "derived": "controller"        }
+  ]
+},{
   "name": "Market",
   "fields": [
     { "name": "id",                 "type": "Bytes!"                                             },
+    { "name": "asAccount",          "type": "Account!"                                           },
+    { "name": "controller",         "type": "BorrowController!"                                  },
+    { "name": "dailyLimit",         "type": "BigInt"                                             },
     { "name": "escrows",            "type": "Escrow!",            "derived": "market"            },
     { "name": "creation",           "type": "NewMarket!",         "derived": "market"            },
     { "name": "deposit",            "type": "Deposit!",           "derived": "market"            },
