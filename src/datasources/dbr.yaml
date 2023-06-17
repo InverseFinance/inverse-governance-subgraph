@@ -25,6 +25,8 @@
       eventHandlers:
         - event: AddMarket(indexed address)
           handler: handleAddMarket
+        - event: ForceReplenish(indexed address,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleForceReplenish
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
         # - event: AddMinter(indexed address)
@@ -33,6 +35,4 @@
         #   handler: handleRemoveMinter
         # - event: ChangeOperator(indexed address)
         #   handler: handleChangeOperator
-        # - event: ForceReplenish(indexed address,indexed address,indexed address,uint256,uint256,uint256)
-        #   handler: handleForceReplenish
       file: {file}
