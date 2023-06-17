@@ -1,1 +1,9 @@
-[]
+[{
+  "name": "ERC20Balance",
+  "fields": [
+    { "name": "dueTokensAccruedExact", "type": "BigInt"     },
+    { "name": "dueTokensAccrued",      "type": "BigDecimal" },
+    { "name": "deficitExact",          "type": "BigInt"     },
+    { "name": "deficit",               "type": "BigDecimal" }
+  ]
+}]

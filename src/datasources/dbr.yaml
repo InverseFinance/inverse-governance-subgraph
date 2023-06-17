@@ -12,6 +12,7 @@
       entities:
         - Market
         - BorrowController
+        - ERC20Balance
       abis:
         - name: DBR
           file: {root}/abi/FiRM/DBR.json
@@ -19,9 +20,13 @@
           file: {root}/abi/FiRM/Market.json
         - name: BorrowController
           file: {root}/abi/FiRM/BorrowController.json
+        - name: IERC20
+          file: {root}/node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
       eventHandlers:
         - event: AddMarket(indexed address)
           handler: handleAddMarket
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
         # - event: AddMinter(indexed address)
         #   handler: handleAddMinter
         # - event: RemoveMinter(indexed address)
