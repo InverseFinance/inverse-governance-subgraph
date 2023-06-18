@@ -37,4 +37,10 @@
       callHandlers:
         - function: setBorrowController(address)
           handler: handleSetBorrowController
+        - function: setCollateralFactorBps(uint256)
+          handler: handleSetCollateralFactorBps
+        # - function: setLiquidationFactorBps(uint256)
+        # - function: setReplenismentIncentiveBps(uint256)
+        # - function: setLiquidationIncentiveBps(uint256)
+        # - function: setLiquidationFeeBps(uint256)
       file: {file}

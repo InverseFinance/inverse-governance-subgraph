@@ -1,4 +1,4 @@
-import { Address, Entity } from '@graphprotocol/graph-ts';
+import { Address } from '@graphprotocol/graph-ts';
 
 import {
 	Account,
@@ -19,6 +19,10 @@ import {
 	BorrowController as BorrowControllerContract,
 } from '../../generated/templates/market/BorrowController';
 
+import {
+	fetchERC20,
+} from '@openzeppelin/subgraphs/src/fetch/erc20'
+
 export function fetchMarket(address: Address): Market {
 	let market = Market.load(address)
 
@@ -29,11 +33,14 @@ export function fetchMarket(address: Address): Market {
 		let marketContract     = MarketContract.bind(address)
 		let controllerContract = BorrowControllerContract.bind(marketContract.borrowController());
 		let dailyLimit         = controllerContract.try_dailyLimits(address)
+
 		// create object
-		market            = new Market(address)
-		market.asAccount  = address
-		market.controller = fetchBorrowController(controllerContract._address).id
-		if (!dailyLimit.reverted) market.dailyLimit = dailyLimit.value
+		market                     = new Market(address)
+		market.asAccount           = address
+		market.controller          = fetchBorrowController(controllerContract._address).id
+		market.collateral          = fetchERC20(marketContract.collateral()).id
+		market.collateralFactorBPS = marketContract.collateralFactorBps()
+		market.dailyLimit          = dailyLimit.reverted ? null : dailyLimit.value
 		market.save()
 
 		// register in account
