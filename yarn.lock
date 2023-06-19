@@ -372,10 +372,10 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.6.0.tgz#c91cf64bc27f573836dba4122758b4743418c1b3"
   integrity sha512-8vi4d50NNya/bQqCmaVzvHNmwHvS0OBKb7HNtuNwEE3scXWrP31fKQoGxNMT+KbzmrNZzatE3QK5p2gFONI/hg==
 
-"@openzeppelin/subgraphs@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@openzeppelin/subgraphs/-/subgraphs-0.1.8.tgz#2e4076ecbd6017a7f5e8215b35827c32b06f8d38"
-  integrity sha512-I7A/m1FZ4Z4m9gttVxsQ6Dt2j53PMug/qj/Jyd4JnkgL4OmdunzsYZbj8dfcBG4nbAeMK3H7V9dKCEqB6PAKHw==
+"@openzeppelin/subgraphs@^0.1.8-5":
+  version "0.1.8-5"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/subgraphs/-/subgraphs-0.1.8-5.tgz#4f2b6c7892824cc5dd87493d6c7ef61f75c8c9db"
+  integrity sha512-7k8x6A/lI33Dggah0S6Q+n348KaTBOUD7pK49K0lBSvCHZw5PqpMNZopfD/Kk+0nyFRzhAoPUU97RhmKz+YFJw==
   dependencies:
     "@amxx/graphprotocol-utils" "^1.1.0"
     "@openzeppelin/contracts" "^4.6.0"
