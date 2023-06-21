@@ -20,6 +20,8 @@
           file: {root}/abi/FiRM/Market.json
         - name: BorrowController
           file: {root}/abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: {root}/abi/FiRM/Oracle.json
         - name: IERC20
           file: {root}/node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
       eventHandlers:

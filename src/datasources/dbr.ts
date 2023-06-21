@@ -30,7 +30,7 @@ import {
 
 import {
 	fetchMarket
-} from '../fetch/market'
+} from '../fetch'
 
 export function handleAddMarket(event: AddMarketEvent): void {
 	let ev         = new NewMarket(events.id(event))

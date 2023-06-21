@@ -16,6 +16,7 @@ import {
     Borrow       as BorrowEvent,
     Repay        as RepayEvent,
     Liquidate    as LiquidateEvent,
+    SetOracleCall,
     SetBorrowControllerCall,
     SetCollateralFactorBpsCall,
 } from '../../generated/templates/market/Market'
@@ -46,17 +47,21 @@ import {
 import {
     fetchMarket,
     fetchBorrowController,
-} from "../fetch/market"
+} from "../fetch"
+
+export function handleSetOracle(call: SetOracleCall) : void {
+    fetchMarket(call.to) // update price
+}
 
 export function handleSetBorrowController(call: SetBorrowControllerCall) : void {
-    let market = fetchMarket(call.to)
+    let market        = fetchMarket(call.to)
     market.controller = fetchBorrowController(call.inputs._borrowController).id
     market.dailyLimit = BorrowControllerContract.bind(call.inputs._borrowController).dailyLimits(call.to)
     market.save()
 }
 
 export function handleSetCollateralFactorBps(call: SetCollateralFactorBpsCall) : void {
-    let market = fetchMarket(call.to)
+    let market                 = fetchMarket(call.to)
     market.collateralFactorBPS = call.inputs._collateralFactorBps
     market.save()
 }
@@ -80,7 +85,7 @@ export function handleDeposit(event: DepositEvent): void {
     ev.emitter     = fetchAccount(event.address).id
     ev.transaction = transactions.log(event).id
     ev.timestamp   = event.block.timestamp
-    ev.market      = fetchMarket(event.address).id
+    ev.market      = market.id
     ev.account     = fetchAccount(event.params.account).id
     ev.amountExact = event.params.amount
     ev.amount      = decimals.toDecimals(event.params.amount, erc20.decimals)
@@ -95,7 +100,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
     ev.emitter     = fetchAccount(event.address).id
     ev.transaction = transactions.log(event).id
     ev.timestamp   = event.block.timestamp
-    ev.market      = fetchMarket(event.address).id
+    ev.market      = market.id
     ev.account     = fetchAccount(event.params.account).id
     ev.to          = fetchAccount(event.params.to).id
     ev.amountExact = event.params.amount
@@ -111,7 +116,7 @@ export function handleBorrow(event: BorrowEvent): void {
     ev.emitter     = fetchAccount(event.address).id
     ev.transaction = transactions.log(event).id
     ev.timestamp   = event.block.timestamp
-    ev.market      = fetchMarket(event.address).id
+    ev.market      = market.id
     ev.account     = fetchAccount(event.params.account).id
     ev.amountExact = event.params.amount
     ev.amount      = decimals.toDecimals(event.params.amount, erc20.decimals)
@@ -126,7 +131,7 @@ export function handleRepay(event: RepayEvent): void {
     ev.emitter     = fetchAccount(event.address).id
     ev.transaction = transactions.log(event).id
     ev.timestamp   = event.block.timestamp
-    ev.market      = fetchMarket(event.address).id
+    ev.market      = market.id
     ev.account     = fetchAccount(event.params.account).id
     ev.repayer     = fetchAccount(event.params.repayer).id
     ev.amountExact = event.params.amount
@@ -142,7 +147,7 @@ export function handleLiquidate(event: LiquidateEvent): void {
     ev.emitter               = fetchAccount(event.address).id
     ev.transaction           = transactions.log(event).id
     ev.timestamp             = event.block.timestamp
-    ev.market                = fetchMarket(event.address).id
+    ev.market                = market.id
     ev.account               = fetchAccount(event.params.account).id
     ev.liquidator            = fetchAccount(event.params.liquidator).id
     ev.liquidatorRewardExact = event.params.liquidatorReward

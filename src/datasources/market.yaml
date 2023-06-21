@@ -17,6 +17,8 @@
           file: {root}/abi/FiRM/Market.json
         - name: BorrowController
           file: {root}/abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: {root}/abi/FiRM/Oracle.json
         - name: Escrow # needed for try_token
           file: {root}/abi/FiRM/Escrow.json
         - name: IERC20
@@ -35,6 +37,8 @@
         - event: Liquidate(indexed address,indexed address,uint256,uint256)
           handler: handleLiquidate
       callHandlers:
+        - function: setOracle(address)
+          handler: handleOracle
         - function: setBorrowController(address)
           handler: handleSetBorrowController
         - function: setCollateralFactorBps(uint256)

@@ -36,6 +36,7 @@
     { "name": "controller",             "type": "BorrowController!"                                  },
     { "name": "collateral",             "type": "ERC20Contract!"                                     },
     { "name": "collateralFactorBPS",    "type": "BigInt!"                                            },
+    { "name": "price",                  "type": "BigInt"                                             },
     { "name": "dailyLimit",             "type": "BigInt"                                             },
     { "name": "escrows",                "type": "Escrow!",            "derived": "market"            },
     { "name": "creation",               "type": "NewMarket!",         "derived": "market"            },

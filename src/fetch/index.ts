@@ -16,6 +16,10 @@ import {
 } from '../../generated/templates/market/Market';
 
 import {
+	Oracle as OracleContract,
+} from '../../generated/templates/market/Oracle';
+
+import {
 	BorrowController as BorrowControllerContract,
 } from '../../generated/templates/market/BorrowController';
 
@@ -25,29 +29,32 @@ import {
 
 export function fetchMarket(address: Address): Market {
 	let market = Market.load(address)
+	let marketContract = MarketContract.bind(address)
+	let oracleContract = OracleContract.bind(marketContract.oracle())
 
 	if (market == null) {
 		// create template
 		marketTemplate.create(address)
 
-		let marketContract     = MarketContract.bind(address)
-		let controllerContract = BorrowControllerContract.bind(marketContract.borrowController());
-		let dailyLimit         = controllerContract.try_dailyLimits(address)
-
 		// create object
 		market                     = new Market(address)
 		market.asAccount           = address
-		market.controller          = fetchBorrowController(controllerContract._address).id
+		market.controller          = fetchBorrowController(marketContract.borrowController()).id
 		market.collateral          = fetchERC20(marketContract.collateral()).id
 		market.collateralFactorBPS = marketContract.collateralFactorBps()
+		let dailyLimit             = BorrowControllerContract.bind(Address.fromBytes(market.controller)).try_dailyLimits(address)
 		market.dailyLimit          = dailyLimit.reverted ? null : dailyLimit.value
-		market.save()
+		//market.save() // save after price update
 
 		// register in account
 		let account      = new Account(address)
 		account.asMarket = address
 		account.save()
 	}
+
+	let price = oracleContract.try_getPrice(Address.fromBytes(market.collateral), market.collateralFactorBPS)
+	market.price = price.reverted ? null : price.value;
+	market.save()
 
 	return market as Market
 }

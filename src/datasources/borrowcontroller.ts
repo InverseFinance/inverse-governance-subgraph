@@ -4,7 +4,7 @@ import {
 
 import {
     fetchMarket,
-} from "../fetch/market"
+} from "../fetch"
 
 export function handleSetDailyLimit(call: SetDailyLimitCall) : void {
     let market = fetchMarket(call.inputs.market)
