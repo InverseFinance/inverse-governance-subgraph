@@ -52,7 +52,7 @@ export function fetchMarket(address: Address): Market {
 		account.save()
 	}
 
-	let price = oracleContract.try_getFeedPrice(Address.fromBytes(market.collateral))
+	let price = oracleContract.try_viewPrice(Address.fromBytes(market.collateral), market.collateralFactorBPS)
 	market.price = price.reverted ? null : price.value;
 	market.save()
 
