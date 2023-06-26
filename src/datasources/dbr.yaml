@@ -1,0 +1,40 @@
+  - kind: ethereum/contract
+    name: {id}
+    network: {chain}
+    source:
+      address: "{address}"
+      abi: DBR
+      startBlock: {startBlock}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - BorrowController
+        - ERC20Balance
+      abis:
+        - name: DBR
+          file: {root}/abi/FiRM/DBR.json
+        - name: Market
+          file: {root}/abi/FiRM/Market.json
+        - name: BorrowController
+          file: {root}/abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: {root}/abi/FiRM/Oracle.json
+        - name: IERC20
+          file: {root}/node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: AddMarket(indexed address)
+          handler: handleAddMarket
+        - event: ForceReplenish(indexed address,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleForceReplenish
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        # - event: AddMinter(indexed address)
+        #   handler: handleAddMinter
+        # - event: RemoveMinter(indexed address)
+        #   handler: handleRemoveMinter
+        # - event: ChangeOperator(indexed address)
+        #   handler: handleChangeOperator
+      file: {file}

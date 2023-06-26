@@ -1,0 +1,138 @@
+[{
+  "name": "Account",
+  "fields": [
+    { "name": "id",                     "type": "Bytes!"                                             },
+    { "name": "asMarket",               "type": "Market"                                             },
+    { "name": "asController",           "type": "BorrowController"                                   },
+    { "name": "escrows",                "type": "Escrow!",            "derived": "beneficiary"       },
+    { "name": "deposits",               "type": "Deposit!",           "derived": "account"           },
+    { "name": "withdrawals",            "type": "Withdraw!",          "derived": "account"           },
+    { "name": "withdrawalsTo",          "type": "Withdraw!",          "derived": "to"                },
+    { "name": "borrowals",              "type": "Borrow!",            "derived": "account"           },
+    { "name": "repayments",             "type": "Repay!",             "derived": "account"           },
+    { "name": "repayerOf",              "type": "Repay!",             "derived": "repayer"           },
+    { "name": "liquidations",           "type": "Liquidate!",         "derived": "account"           },
+    { "name": "liquidatorOf",           "type": "Liquidate!",         "derived": "liquidator"        }
+  ]
+},{
+  "name": "ERC20Contract",
+  "fields": [
+    { "name": "id",                     "type": "Bytes!"                                             },
+    { "name": "escrows",                "type": "Escrow!",            "derived": "token"             },
+    { "name": "markets",                "type": "Market!",            "derived": "collateral"        }
+  ]
+},{
+  "name": "BorrowController",
+  "fields": [
+    { "name": "id",                     "type": "Bytes!"                                             },
+    { "name": "asAccount",              "type": "Account!"                                           },
+    { "name": "markets",                "type": "Market!",            "derived": "controller"        }
+  ]
+},{
+  "name": "Market",
+  "fields": [
+    { "name": "id",                     "type": "Bytes!"                                             },
+    { "name": "asAccount",              "type": "Account!"                                           },
+    { "name": "controller",             "type": "BorrowController!"                                  },
+    { "name": "collateral",             "type": "ERC20Contract!"                                     },
+    { "name": "collateralFactorBPS",    "type": "BigInt!"                                            },
+    { "name": "price",                  "type": "BigInt"                                             },
+    { "name": "dailyLimit",             "type": "BigInt"                                             },
+    { "name": "escrows",                "type": "Escrow!",            "derived": "market"            },
+    { "name": "creation",               "type": "NewMarket!",         "derived": "market"            },
+    { "name": "deposit",                "type": "Deposit!",           "derived": "market"            },
+    { "name": "withdraw",               "type": "Withdraw!",          "derived": "market"            },
+    { "name": "borrow",                 "type": "Borrow!",            "derived": "market"            },
+    { "name": "repay",                  "type": "Repay!",             "derived": "market"            },
+    { "name": "liquidate",              "type": "Liquidate!",         "derived": "market"            }
+  ]
+},{
+  "name": "Escrow",
+  "immutable": true,
+  "fields": [
+    { "name": "id",                     "type": "Bytes!"                                             },
+    { "name": "market",                 "type": "Market!"                                            },
+    { "name": "beneficiary",            "type": "Account!"                                           },
+    { "name": "token",                  "type": "ERC20Contract"                                      }
+  ]
+},{
+  "name": "NewMarket",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                "type": "Account!"             },
+    { "name": "transaction",            "type": "Transaction!"         },
+    { "name": "timestamp",              "type": "BigInt!"              },
+    { "name": "market",                 "type": "Market!"              }
+  ]
+},{
+  "name": "Deposit",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",                "type": "Account!"             },
+    { "name": "transaction",            "type": "Transaction!"         },
+    { "name": "timestamp",              "type": "BigInt!"              },
+    { "name": "market",                 "type": "Market!"              },
+    { "name": "account",                "type": "Account!"             },
+    { "name": "amountExact",            "type": "BigInt!"              },
+    { "name": "amount",                 "type": "BigDecimal!"          }
+  ]
+},{
+  "name": "Withdraw",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",               "type": "Account!"             },
+    { "name": "transaction",           "type": "Transaction!"         },
+    { "name": "timestamp",             "type": "BigInt!"              },
+    { "name": "market",                "type": "Market!"              },
+    { "name": "account",               "type": "Account!"             },
+    { "name": "to",                    "type": "Account!"             },
+    { "name": "amountExact",           "type": "BigInt!"              },
+    { "name": "amount",                "type": "BigDecimal!"          }
+  ]
+},{
+  "name": "Borrow",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",               "type": "Account!"             },
+    { "name": "transaction",           "type": "Transaction!"         },
+    { "name": "timestamp",             "type": "BigInt!"              },
+    { "name": "market",                "type": "Market!"              },
+    { "name": "account",               "type": "Account!"             },
+    { "name": "amountExact",           "type": "BigInt!"              },
+    { "name": "amount",               "type": "BigDecimal!"          }
+  ]
+},{
+  "name": "Repay",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",               "type": "Account!"             },
+    { "name": "transaction",           "type": "Transaction!"         },
+    { "name": "timestamp",             "type": "BigInt!"              },
+    { "name": "market",                "type": "Market!"              },
+    { "name": "account",               "type": "Account!"             },
+    { "name": "repayer",               "type": "Account!"             },
+    { "name": "amountExact",           "type": "BigInt!"              },
+    { "name": "amount",                "type": "BigDecimal!"          }
+  ]
+},{
+  "name": "Liquidate",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",               "type": "Account!"             },
+    { "name": "transaction",           "type": "Transaction!"         },
+    { "name": "timestamp",             "type": "BigInt!"              },
+    { "name": "market",                "type": "Market!"              },
+    { "name": "account",               "type": "Account!"             },
+    { "name": "liquidator",            "type": "Account!"             },
+    { "name": "liquidatorRewardExact", "type": "BigInt!"              },
+    { "name": "liquidatorReward",      "type": "BigDecimal!"          },
+    { "name": "repaidDebtExact",       "type": "BigInt!"              },
+    { "name": "repaidDebt",            "type": "BigDecimal!"          }
+  ]
+}]

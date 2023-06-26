@@ -82,6 +82,20 @@
       "governormills",
       "governor"
     ]
+  },{
+    "name": "DBR",
+    "address": "0xad038eb671c44b853887a7e32528fab35dc5d710",
+    "startBlock": 16155758,
+    "module": [
+      "erc20",
+      "dbr"
+    ]
+  },{
+    "name": "Market",
+    "templates": [
+      "market",
+      "borrowcontroller"
+    ]
   }],
   "deploy": [
     { "type": "studio", "name": "inverse-governance-subgraph" }

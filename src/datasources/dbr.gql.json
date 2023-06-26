@@ -1,0 +1,37 @@
+[{
+  "name": "Account",
+  "fields": [
+    { "name": "id",                    "type": "Bytes!"                                    },
+    { "name": "replenished",           "type": "ForceReplenish!", "derived": "account"     },
+    { "name": "replenisher",           "type": "ForceReplenish!", "derived": "replenisher" }
+  ]
+},{
+  "name": "Market",
+  "fields": [
+    { "name": "id",                    "type": "Bytes!"                                    },
+    { "name": "replenishments",        "type": "ForceReplenish!", "derived": "market"      }
+  ]
+},{
+  "name": "ERC20Balance",
+  "fields": [
+    { "name": "dueTokensAccruedExact", "type": "BigInt"                                    },
+    { "name": "dueTokensAccrued",      "type": "BigDecimal"                                },
+    { "name": "deficitExact",          "type": "BigInt"                                    },
+    { "name": "deficit",               "type": "BigDecimal"                                }
+  ]
+},{
+  "name": "ForceReplenish",
+  "parent": "Event",
+  "immutable": true,
+  "fields": [
+    { "name": "emitter",               "type": "Account!"                                  },
+    { "name": "transaction",           "type": "Transaction!"                              },
+    { "name": "timestamp",             "type": "BigInt!"                                   },
+    { "name": "market",                "type": "Market!"                                   },
+    { "name": "account",               "type": "Account!"                                  },
+    { "name": "replenisher",           "type": "Account!"                                  },
+    { "name": "replenisherReward",     "type": "BigInt!"                                   },
+    { "name": "replenishmentCost",     "type": "BigInt!"                                   },
+    { "name": "deficit",               "type": "BigInt!"                                   }
+  ]
+}]
