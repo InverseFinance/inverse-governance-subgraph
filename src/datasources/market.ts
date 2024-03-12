@@ -119,7 +119,7 @@ export function handleBorrow(event: BorrowEvent): void {
     ev.market      = market.id
     ev.account     = fetchAccount(event.params.account).id
     ev.amountExact = event.params.amount
-    ev.amount      = decimals.toDecimals(event.params.amount, erc20.decimals)
+    ev.amount      = decimals.toDecimals(event.params.amount, 18)
     ev.save()
 }
 
@@ -135,7 +135,7 @@ export function handleRepay(event: RepayEvent): void {
     ev.account     = fetchAccount(event.params.account).id
     ev.repayer     = fetchAccount(event.params.repayer).id
     ev.amountExact = event.params.amount
-    ev.amount      = decimals.toDecimals(event.params.amount, erc20.decimals)
+    ev.amount      = decimals.toDecimals(event.params.amount, 18)
     ev.save()
 }
 
@@ -153,6 +153,6 @@ export function handleLiquidate(event: LiquidateEvent): void {
     ev.liquidatorRewardExact = event.params.liquidatorReward
     ev.liquidatorReward      = decimals.toDecimals(event.params.liquidatorReward, erc20.decimals)
     ev.repaidDebtExact       = event.params.repaidDebt
-    ev.repaidDebt            = decimals.toDecimals(event.params.repaidDebt, erc20.decimals)
+    ev.repaidDebt            = decimals.toDecimals(event.params.repaidDebt, 18)
     ev.save()
 }
