@@ -1,0 +1,506 @@
+specVersion: 0.0.4
+schema:
+  file: mainnet.schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: erc20
+    network: mainnet
+    source:
+      address: "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68"
+      abi: IERC20
+      startBlock: 11498340
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: voting
+    network: mainnet
+    source:
+      address: "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68"
+      abi: Voting
+      startBlock: 11498340
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Voting
+      abis:
+        - name: Voting
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IVotes.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/voting.ts
+  - kind: ethereum/contract
+    name: xinv
+    network: mainnet
+    source:
+      address: "0x65b35d6eb7006e0e607bc54eb2dfd459923476fe"
+      abi: XINV
+      startBlock: 12437327
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: XINV
+          file: ../abi/XINV.json
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Mint(address,uint256,uint256)
+          handler: handleMint
+        - event: Redeem(address,uint256,uint256)
+          handler: handleRedeem
+      file: ../src/datasources/xinv.ts
+  - kind: ethereum/contract
+    name: xinv-3
+    network: mainnet
+    source:
+      address: "0x1637e4e9941d55703a7a5e7807d6ada3f7dcd61b"
+      abi: XINV
+      startBlock: 13549472
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: XINV
+          file: ../abi/XINV.json
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Mint(address,uint256,uint256)
+          handler: handleMint
+        - event: Redeem(address,uint256,uint256)
+          handler: handleRedeem
+      file: ../src/datasources/xinv.ts
+  - kind: ethereum/contract
+    name: voting-4
+    network: mainnet
+    source:
+      address: "0x1637e4e9941d55703a7a5e7807d6ada3f7dcd61b"
+      abi: Voting
+      startBlock: 13549472
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Voting
+      abis:
+        - name: Voting
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IVotes.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/voting.ts
+  - kind: ethereum/contract
+    name: erc20-5
+    network: mainnet
+    source:
+      address: "0xaa5a67c256e27a5d80712c51971408db3370927d"
+      abi: IERC20
+      startBlock: 13097116
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: erc20-6
+    network: mainnet
+    source:
+      address: "0x328dfd0139e26cb0fef7b0742b49b0fe4325f821"
+      abi: IERC20
+      startBlock: 11976550
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: erc20-7
+    network: mainnet
+    source:
+      address: "0x5ba61c0a8c4dcccc200cd0ccc40a5725a426d002"
+      abi: IERC20
+      startBlock: 13173519
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: erc20-8
+    network: mainnet
+    source:
+      address: "0x865377367054516e17014CcdED1e7d814EDC9ce4"
+      abi: IERC20
+      startBlock: 11915875
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: erc20-9
+    network: mainnet
+    source:
+      address: "0xD4108Bb1185A5c30eA3f4264Fd7783473018Ce17"
+      abi: IERC20
+      startBlock: 14588104
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: comptimelock
+    network: mainnet
+    source:
+      address: "0x926dF14a23BE491164dCF93f4c468A50ef659D5B"
+      abi: CompTimelock
+      startBlock: 11549293
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Timelock
+      abis:
+        - name: CompTimelock
+          file: ../abi/CompTimelock.json
+      eventHandlers:
+        - event: QueueTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: handleQueueTransaction
+        - event: ExecuteTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: handleExecuteTransaction
+        - event: CancelTransaction(indexed bytes32,indexed address,uint256,string,bytes,uint256)
+          handler: handleCancelTransaction
+        - event: NewDelay(indexed uint256)
+          handler: handleNewDelay
+      file: ../src/datasources/comptimelock.ts
+  - kind: ethereum/contract
+    name: governormills
+    network: mainnet
+    source:
+      address: "0x35d9f4953748b318f18c30634bA299b237eeDfff"
+      abi: GovernorMills
+      startBlock: 11549293
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: GovernorMills
+          file: ../abi/GovernorMills.json
+      eventHandlers:
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: VoteCast(address,uint256,bool,uint256)
+          handler: handleVoteCast
+        - event: ProposalThresholdUpdated(uint256,uint256)
+          handler: handleProposalThresholdUpdated
+        - event: QuorumUpdated(uint256,uint256)
+          handler: handleQuorumUpdated
+      file: ../src/datasources/governormills.ts
+  - kind: ethereum/contract
+    name: governor
+    network: mainnet
+    source:
+      address: "0x35d9f4953748b318f18c30634bA299b237eeDfff"
+      abi: Governor
+      startBlock: 11549293
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: Governor
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IGovernorTimelock.json
+      eventHandlers:
+        - event: ProposalCanceled(uint256)
+          handler: handleProposalCanceled
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: ProposalExecuted(uint256)
+          handler: handleProposalExecuted
+        - event: ProposalQueued(uint256,uint256)
+          handler: handleProposalQueued
+        - event: VoteCast(indexed address,uint256,uint8,uint256,string)
+          handler: handleVoteCast
+        - event: VoteCastWithParams(indexed address,uint256,uint8,uint256,string,bytes)
+          handler: handleVoteCastWithParams
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/governor.ts
+  - kind: ethereum/contract
+    name: governormills-13
+    network: mainnet
+    source:
+      address: "0xBeCCB6bb0aa4ab551966A7E4B97cec74bb359Bf6"
+      abi: GovernorMills
+      startBlock: 13549618
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: GovernorMills
+          file: ../abi/GovernorMills.json
+      eventHandlers:
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: VoteCast(address,uint256,bool,uint256)
+          handler: handleVoteCast
+        - event: ProposalThresholdUpdated(uint256,uint256)
+          handler: handleProposalThresholdUpdated
+        - event: QuorumUpdated(uint256,uint256)
+          handler: handleQuorumUpdated
+      file: ../src/datasources/governormills.ts
+  - kind: ethereum/contract
+    name: governor-14
+    network: mainnet
+    source:
+      address: "0xBeCCB6bb0aa4ab551966A7E4B97cec74bb359Bf6"
+      abi: Governor
+      startBlock: 13549618
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Governor
+      abis:
+        - name: Governor
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IGovernorTimelock.json
+      eventHandlers:
+        - event: ProposalCanceled(uint256)
+          handler: handleProposalCanceled
+        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
+          handler: handleProposalCreated
+        - event: ProposalExecuted(uint256)
+          handler: handleProposalExecuted
+        - event: ProposalQueued(uint256,uint256)
+          handler: handleProposalQueued
+        - event: VoteCast(indexed address,uint256,uint8,uint256,string)
+          handler: handleVoteCast
+        - event: VoteCastWithParams(indexed address,uint256,uint8,uint256,string,bytes)
+          handler: handleVoteCastWithParams
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/governor.ts
+  - kind: ethereum/contract
+    name: erc20-15
+    network: mainnet
+    source:
+      address: "0xad038eb671c44b853887a7e32528fab35dc5d710"
+      abi: IERC20
+      startBlock: 16155758
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ../node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: dbr
+    network: mainnet
+    source:
+      address: "0xad038eb671c44b853887a7e32528fab35dc5d710"
+      abi: DBR
+      startBlock: 16155758
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - BorrowController
+        - ERC20Balance
+      abis:
+        - name: DBR
+          file: ../abi/FiRM/DBR.json
+        - name: Market
+          file: ../abi/FiRM/Market.json
+        - name: BorrowController
+          file: ../abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: ../abi/FiRM/Oracle.json
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: AddMarket(indexed address)
+          handler: handleAddMarket
+        - event: ForceReplenish(indexed address,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleForceReplenish
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        # - event: AddMinter(indexed address)
+        #   handler: handleAddMinter
+        # - event: RemoveMinter(indexed address)
+        #   handler: handleRemoveMinter
+        # - event: ChangeOperator(indexed address)
+        #   handler: handleChangeOperator
+      file: ../src/datasources/dbr.ts
+templates:
+  - kind: ethereum/contract
+    name: market
+    network: mainnet
+    source:
+      abi: Market
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - BorrowController
+      abis:
+        - name: Market
+          file: ../abi/FiRM/Market.json
+        - name: BorrowController
+          file: ../abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: ../abi/FiRM/Oracle.json
+        - name: Escrow # needed for try_token
+          file: ../abi/FiRM/Escrow.json
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: CreateEscrow(indexed address,address)
+          handler: handleCreateEscrow
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,indexed address,uint256)
+          handler: handleWithdraw
+        - event: Borrow(indexed address,uint256)
+          handler: handleBorrow
+        - event: Repay(indexed address,indexed address,uint256)
+          handler: handleRepay
+        - event: Liquidate(indexed address,indexed address,uint256,uint256)
+          handler: handleLiquidate
+      callHandlers:
+        - function: setOracle(address)
+          handler: handleOracle
+        - function: setBorrowController(address)
+          handler: handleSetBorrowController
+        - function: setCollateralFactorBps(uint256)
+          handler: handleSetCollateralFactorBps
+        # - function: setLiquidationFactorBps(uint256)
+        # - function: setReplenismentIncentiveBps(uint256)
+        # - function: setLiquidationIncentiveBps(uint256)
+        # - function: setLiquidationFeeBps(uint256)
+      file: ../src/datasources/market.ts
+  - kind: ethereum/contract
+    name: borrowcontroller
+    network: mainnet
+    source:
+      abi: BorrowController
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - BorrowController
+      abis:
+        - name: Market
+          file: ../abi/FiRM/Market.json
+        - name: BorrowController
+          file: ../abi/FiRM/BorrowController.json
+        - name: Oracle
+          file: ../abi/FiRM/Oracle.json
+        - name: IERC20
+          file: ../node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      callHandlers:
+        - function: setDailyLimit(address,uint256)
+          handler: handleSetDailyLimit
+      file: ../src/datasources/borrowcontroller.ts
